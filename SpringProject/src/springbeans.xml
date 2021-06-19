@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.1.xsd"
+	default-init-method="masterInit" default-destroy-method="masterDestroy"
+	default-lazy-init="default">
+
+
+
+	<!-- dependency injection Using setter method -->
+	<!-- <bean id="helloWorld" class="com.tq.HelloWorld"> <property name="message" 
+		value="First Hello!!"/> </bean> -->
+
+	<!-- <bean id="triangle" class="com.tq.Triangle" scope="singleton"> <constructor-arg 
+		value="20"/> -->
+
+	<!-- <bean id="triangle" class="com.tq.Triangle"> scope="prototype"> <constructor-arg 
+		value="20"/> -->
+
+	<!-- <constructor-arg value="Equilateral"/> -->
+	<!-- <constructor-arg type="int" value="20"/> -->
+	<!-- <constructor-arg type="java.lang.String" value="20"/> -->
+	<!-- <constructor-arg index="0" value="Equilateral"/> <constructor-arg index="1" 
+		value="20"/> -->
+	<!-- </bean> -->
+
+	<!-- <bean id="triangle" class="com.tq.Triangle" init-method="init" destroy-method="myDestroy"> 
+		<constructor-arg value="20" /> </bean> -->
+
+	<!-- <bean class="com.lifecycle.LifeCycleExampleBean" /> -->
+
+	<!--******************************************************************************************************* -->
+
+	<!-- bean definition Inheritance -->
+	<!-- <bean id="helloWorld" class="com.inheritance.HelloWorld" abstract="true"> 
+		<property name="message1" value="Hello first" /> <property name="message2" 
+		value="Hello second world" /> </bean> <bean id="helloIndia" class="com.inheritance.HelloIndia" 
+		parent="helloWorld"> <property name="message1" value="Hello India" /> <property 
+		name="message3" value="Namaste India" /> </bean> -->
+
+	<!--******************************************************************************************************* -->
+	<!-- com.collections -->
+	<!-- <bean id="q" class="com.collections.Question"> <constructor-arg value="111" 
+		/> <constructor-arg value="What is java?" /> <constructor-arg> <list> <value>Java 
+		is a programming language </value> <value>Java is a plateform independent</value> 
+		<value>Java is an Island of Indonesia</value> </list> </constructor-arg> 
+		</bean> <bean id="ans1" class="com.collections.Answer"> <constructor-arg 
+		value="1"></constructor-arg> <constructor-arg value="Java is a programming 
+		language"></constructor-arg> <constructor-arg value="Aparna"></constructor-arg> 
+		</bean> <bean id="ans2" class="com.collections.Answer"> <constructor-arg 
+		value="2"></constructor-arg> <constructor-arg value="Java is a plateform"></constructor-arg> 
+		<constructor-arg value="Rupali"></constructor-arg> </bean> <bean id="q" class="com.collections.Question"> 
+		<constructor-arg value="111" /> <constructor-arg value="What is java?" /> 
+		<constructor-arg> <list> <ref bean="ans1" /> <ref bean="ans2" /> </list> 
+		</constructor-arg> </bean> -->
+	<!--******************************************************************************************************* -->
+
+	<!-- Autowiring -->
+	<!-- <bean id="triAuto" class="com.autowired.Triangle" autowire="byName"> 
+		</bean> <bean id="pointA" class="com.autowired.Point"> <property name="x" 
+		value="0" /> <property name="y" value="0" /> </bean> <bean id="pointB" class="com.autowired.Point"> 
+		<property name="x" value="10" /> <property name="y" value="5" /> </bean> 
+		<bean id="pointC" class="com.autowired.Point"> <property name="x" value="20" 
+		/> <property name="y" value="20" /> </bean> -->
+
+
+
+	<!--******************************************************************************************************* -->
+
+	<!-- constructor injection with map (object) -->
+
+	<!-- <bean id="queMapWithObject" class="com.collections.Question"> <constructor-arg 
+		value="103" /> <constructor-arg value="what is angular" /> <constructor-arg> 
+		<map> <entry key-ref="answer1" value-ref="user1" /> <entry key-ref="answer2" 
+		value-ref="user2" /> </map> </constructor-arg> </bean> <bean id="answer1" 
+		class="com.collections.Answer"> <constructor-arg value="1" /> <constructor-arg 
+		value="Angular is open source" /> <constructor-arg value="12/12/2020" /> 
+		</bean> <bean id="answer2" class="com.collections.Answer"> <constructor-arg 
+		value="2" /> <constructor-arg value="Angular is framework " /> <constructor-arg 
+		value="1/1/2019" /> </bean> <bean id="user1" class="com.collections.User"> 
+		<constructor-arg value="1" /> <constructor-arg value="diya" /> <constructor-arg 
+		value="diya@gmail.com" /> </bean> <bean id="user2" class="com.collections.User"> 
+		<constructor-arg value="2" /> <constructor-arg value="riya" /> <constructor-arg 
+		value="riya@gmail.com" /> </bean> -->
+
+	<!--******************************************************************************************************* -->
+	<!-- inner bean -->
+
+	<!-- <bean id="triangle" class="com.innerbean.Triangle" name="innertri"> 
+		<property name="pointA" ref="pointAOBJ" /> <property name="pointB" ref="pointBOBJ" 
+		/> <property name="pointC" ref="pointCOBJ" /> </bean> <bean id="pointAOBJ" 
+		class="com.innerbean.Point"> <property name="x" value="30" /> <property name="y" 
+		value="25" /> </bean> <bean id="pointBOBJ" class="com.innerbean.Point"> <property 
+		name="x" value="30" /> <property name="y" value="25" /> </bean> <bean id="pointCOBJ" 
+		class="com.innerbean.Point"> <property name="x" value="30" /> <property name="y" 
+		value="25" /> </bean> -->
+	<!-- OR -->
+	<!-- <bean id="triangle" class="com.innerbean.Triangle" name="innertri"> 
+		<property name="pointA" ref="pointA" /> <property name="pointB"> <bean class="com.innerbean.Point"> 
+		<property name="x" value="30" /> <property name="y" value="25" /> </bean> 
+		</property> <property name="pointC"> <bean class="com.innerbean.Point"> <property 
+		name="x" value="40" /> <property name="y" value="40" /> </bean> </property> 
+		</bean> -->
+	<!-- <bean id="pointA" class="com.innerbean.Point"> <property name="x" value="10" 
+		/> <property name="y" value="5" /> </bean> <alias name="triangle" alias="triOne" 
+		/> -->
+	<!--******************************************************************************************************* -->
+	<!-- METHOD INJECTION -->
+	<!-- <bean id="appContext" class="com.injection.ApplicationContextAwareTest" 
+		scope="singleton" /> <bean id="emp" class="com.injection.Employee" scope="prototype"> 
+		<constructor-arg value="neeta"></constructor-arg> <constructor-arg value="neeta@gmail.com"></constructor-arg> 
+		<bean class="com.injection.FactoryPostProcessorDemo" ></bean> <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> 
+		<property name="Location" value="demoProps.properties"></property> </bean> 
+		</bean> -->
+
+	<!--******************************************************************************************************* -->
+	<!-- ANNOTATION -->
+	<!-- <bean id="simple" class="com.annotation.SimpleMovieListener"> <property 
+		name="movieFinder" ref="movie1"></property> </bean> <bean id="movie1" class="com.annotation.MovieFinder"> 
+		<property name="movieName" value="Titanic"></property> </bean> <bean id="movie2" 
+		class="com.annotation.MovieFinder" primary="true"> <property name="movieName" 
+		value="ABC"></property> </bean> <context:annotation-config/> <context:component-scan 
+		base-package="com.annotation"></context:component-scan> -->
+
+	<!-- <bean class="org.springframework.beans.factory.annotation.RequiredAnnotationBeanPostProcessor" 
+		/> -->
+
+
+	<!-- ANNOTAION.RESOURCE -->
+	<!-- <context:annotation-config /> -->
+
+	<bean id="mycompany" class="com.annotation.resource.Company">
+		<property name="name" value="Test Pvt. Ltd." />
+		<property name="location" value="India" />
+	</bean>
+
+	<bean id="myemployee" class="com.annotation.resource.Employee">
+		<property name="id" value="123456" />
+		<property name="name" value="Charlotte O' Neil" />
+	</bean>
+
+
+
+	<!-- ************************************************************************************** -->
+
+
+<!-- 	<bean id="prototypeBean" class="com.methodinjection.PrototypeBean"
+		scope="prototype">
+		<property name="message" value="Test Message" />
+	</bean>
+	<bean id="singletonBean" class="com.methodinjection.SingletonBean">
+		<property name="prototypeBean" ref="prototypeBean" />
+	</bean> -->
+
+	<!-- <bean id="prototypeBean" class="com.methodinjection.PrototypeBean"
+		scope="prototype">
+		<property name="message" value="Test Message" />
+	</bean>
+	<bean id="singletonBean" class="com.methodinjection.SingletonBean">
+		<lookup-method bean="prototypeBean" name="getPrototypeBean" />
+	</bean>-->
+</beans> 
+
