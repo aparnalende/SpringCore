@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- constructor injection with list (string value) -->
+
+	<!-- <bean id="que" class="com.demo.collection.Question"> <constructor-arg 
+		index="2"> <list> <value>Reactjs is open source</value> <value>Reactjs is 
+		javaScript libaray</value> <value>Reactjs is built SPA</value> </list> </constructor-arg> 
+		<constructor-arg index="0" value="101"/> <constructor-arg index="1" value="What 
+		is reactjs"/> </bean> -->
+
+	<!-- constructor injection with list (object) -->
+	<bean id="qq" class="com.demo.collection.Question">
+		<constructor-arg value="102" />
+		<constructor-arg value="what is java" />
+		<constructor-arg>
+			<list>
+				<ref bean="ans1" />
+				<ref bean="ans2" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="ans1" class="com.demo.collection.Answer">
+		<constructor-arg value="1" />
+		<constructor-arg value="java is programming lang" />
+		<constructor-arg value="jay" />
+
+	</bean>
+	<bean id="ans2" class="com.demo.collection.Answer">
+		<constructor-arg value="2" />
+		<constructor-arg value="java is a platform" />
+		<constructor-arg value="yash" />
+
+	</bean>
+
+	<!-- constructor injection with map (string value) -->
+	<!-- <bean id="queMap" class="com.demo.collection.QuestionWithMap"> <constructor-arg 
+		value="103"/> <constructor-arg value="what is angular"/> <constructor-arg> 
+		<map> <entry key="Angular is open source " value="sara"/> <entry key="Angular 
+		is framework " value="yash"/> </map> </constructor-arg> </bean> -->
+
+	<!-- constructor injection with map (object) -->
+	<bean id="queMapWithObject" class="com.demo.collection.QuestionWithMap">
+		<constructor-arg value="103" />
+		<constructor-arg value="what is angular" />
+		<constructor-arg>
+			<map>
+				<entry key-ref="answer1" value-ref="user1" />
+				<entry key-ref="answer2" value-ref="user2" />
+			</map>
+		</constructor-arg>
+
+	</bean>
+
+	<bean id="answer1" class="com.demo.collection.AnswerWithMap">
+		<constructor-arg value="1" />
+		<constructor-arg value="Angular is open source" />
+		<constructor-arg value="12/12/2020" />
+	</bean>
+	<bean id="answer2" class="com.demo.collection.AnswerWithMap">
+		<constructor-arg value="2" />
+		<constructor-arg value="Angular is framework " />
+		<constructor-arg value="1/1/2019" />
+	</bean>
+
+	<bean id="user1" class="com.demo.collection.User">
+		<constructor-arg value="1" />
+		<constructor-arg value="sara" />
+		<constructor-arg value="sara@gmail.com" />
+	</bean>
+	<bean id="user2" class="com.demo.collection.User">
+		<constructor-arg value="2" />
+		<constructor-arg value="ansh" />
+		<constructor-arg value="ansh@gmail.com" />
+	</bean>
+
+	<!-- inner bean -->
+	<bean id="tri" class="com.demo.innerbean.Triangle" name="tri111">
+		<!-- <property name="pointA" ref="pointAObj" /> -->
+		<property name="pointB">
+			<bean class="com.demo.innerbean.Point">
+				<property name="x" value="30" />
+				<property name="y" value="25" />
+			</bean>
+		</property>
+		<property name="pointC">
+			<bean class="com.demo.innerbean.Point">
+				<property name="x" value="40" />
+				<property name="y" value="40" />
+			</bean>
+		</property>
+
+	</bean>
+<!-- 	<bean id="pointAObj" class="com.demo.innerbean.Point">
+		<property name="x" value="10" />
+		<property name="y" value="5" />
+	</bean> -->
+	<alias name="tri" alias="triOne" />
+
+
+	<!-- autoWire byName-->
+
+<!-- 	<bean id="triAuto" class="com.demo.autowire.Triangle" autowire="byName">
+		
+		
+	</bean>
+	<bean id="pointA" class="com.demo.autowire.Point">
+		<property name="x" value="0" />
+		<property name="y" value="0" />
+	</bean>
+	<bean id="pointB" class="com.demo.autowire.Point">
+		<property name="x" value="10" />
+		<property name="y" value="5" />
+	</bean>
+	<bean id="pointC" class="com.demo.autowire.Point">
+		<property name="x" value="20" />
+		<property name="y" value="20" />
+	</bean>
+ -->
+ <!-- autoWire byType-->
+
+	<!-- <bean id="triAuto" class="com.demo.autowire.Triangle" autowire="byType">
+		<property name="pointB">
+			<bean class="com.demo.autowire.Point">
+				<property name="x" value="30" />
+				<property name="y" value="25" />
+			</bean>
+		</property>
+		<property name="pointC">
+			<bean class="com.demo.autowire.Point">
+				<property name="x" value="40" />
+				<property name="y" value="40" />
+			</bean>
+		</property>
+		
+	</bean>
+	<bean id="pointA" class="com.demo.autowire.Point">
+		<property name="x" value="0" />
+		<property name="y" value="0" />
+	</bean>
+	 <bean id="pointB" class="com.demo.autowire.Point" autowire-candidate="false">
+		<property name="x" value="10" />
+		<property name="y" value="5" />
+	</bean>
+	<bean id="pointC" class="com.demo.autowire.Point" autowire-candidate="false">
+		<property name="x" value="20" />
+		<property name="y" value="20" />
+	</bean>  -->
+
+<!-- autoWire byconstructor-->
+
+	<bean id="triAuto" class="com.demo.autowire.Triangle" autowire="constructor">
+		
+		
+	</bean>
+	<bean id="pointAA" class="com.demo.autowire.Point">
+		<property name="x" value="${pointA.x}" />
+		<property name="y" value="${pointA.y}" />
+	</bean>
+	 <bean id="pointBB" class="com.demo.autowire.Point" autowire-candidate="false" >
+		<property name="x" value="10" />
+		<property name="y" value="5" />
+	</bean>
+	<bean id="pointCC" class="com.demo.autowire.Point" autowire-candidate="false">
+		<property name="x" value="20" />
+		<property name="y" value="20" />
+	</bean> 
+	
+	<bean id="appContext" class="com.demo.MethodInjection.ApplicatioContextAwareTest" scope="singleton"/>
+	
+	<bean id="emp" class="com.demo.MethodInjection.Employee" scope="prototype">
+	<constructor-arg value="Jay"/>
+	<constructor-arg value="jay@gmail.com"/>
+	</bean>
+	<bean class="com.demo.MethodInjection.TQFactoryPostProcessor"/>
+	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<property name="Location" value="demoProps.properties"></property>
+	</bean>
+	
+</beans>

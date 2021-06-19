@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+         default-init-method="masterInit" default-destroy-method="masterDestroy" default-lazy-init="default">
+
+<!-- <bean id="helloWorld1" class="com.demo.HelloWorld" >
+<property name="Message" value="welcome to java"/>
+
+</bean>
+
+<bean id="helloWorld" class="com.demo.HelloWorld" init-method="init" destroy-method="myDestroy">
+<property name="Message" value="welcome to spring apps"/>
+<property name="Message1" value="How are you"/>
+</bean> -->
+
+<!-- <bean id="byeWorld" class="com.demo.ByeWorld">
+<property name="message" value="see you again"/>
+
+</bean> -->
+
+<!-- <bean id="triangle" class="com.demo.Triangle" scope="prototype"  >scope="singleton"
+<constructor-arg value="Equilateral"/>
+<constructor-arg value="20"/>
+<constructor-arg type="int"  value="20"/>
+<constructor-arg type="java.lang.String"  value="20"/>
+ <constructor-arg index="0" value="Equilateral"/>
+ <constructor-arg index="1" type="int" value="20"/> 
+ 
+ <constructor-arg value="Equilateral"/>
+
+
+</bean> -->
+
+<!-- <bean id="triangle" class="com.demo.Triangle" init-method="init" destroy-method="myDestroy">
+
+ <constructor-arg value="Equilateral"/>
+
+
+</bean> -->
+
+<!-- <bean id="helloWorld" class="com.demo.HelloWorld" init-method="init" destroy-method="myDestroy" lazy-init="false">
+<property name="Message" value="welcome to spring apps"/>
+<property name="Message1" value="How are you"/>
+</bean>
+ -->
+<!-- <bean id="triangle" class="com.demo.Triangle" lazy-init="true">
+
+ <constructor-arg value="Equilateral"/>
+
+</bean>
+<bean class="com.demo.LifeCycleBean"/> -->
+
+<!-- Dependent object initialization -->
+<bean id="tri" class="com.demo.DependentObjectandInheritance.Triangle">
+<property name="type" value="EquiLateral"/>
+<property name="pointA" ref="pointAObj"/>
+<property name="pointB" ref="pointBObj"/>
+<property name="pointC" ref="pointCObj"/>
+</bean>
+<bean id="pointAObj" class="com.demo.DependentObjectandInheritance.Point">
+<property name="x" value="0"/>
+<property name="y" value="0"/>
+</bean>
+<bean id="pointBObj" class="com.demo.DependentObjectandInheritance.Point">
+<property name="x" value="10"/>
+<property name="y" value="5"/>
+</bean>
+<bean id="pointCObj" class="com.demo.DependentObjectandInheritance.Point">
+ <property name="x" value="20"/>
+<property name="y" value="20"/> 
+</bean>
+
+<!-- bean definition Inheritance -->
+<bean id="helloWorld" class="com.demo.DependentObjectandInheritance.HellloWorld" abstract="true">
+<property name="message1" value="Hello first"/>
+<property name="message2" value="Hello second world"/>
+</bean>
+
+<bean id="helloIndia" class="com.demo.DependentObjectandInheritance.HelloIndia" parent="helloWorld">
+ <property name="message1" value="Hello India"/> 
+<property name="message3" value="Namaste India"/>
+</bean>
+
+
+
+</beans>
